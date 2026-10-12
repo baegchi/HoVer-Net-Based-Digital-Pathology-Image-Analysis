@@ -274,29 +274,6 @@ than validated measurements:
 - Density assumes microns-per-pixel from slide metadata and falls back to a
   stated 0.5 µm/px default when absent; the report always says which was used.
 
-## Credits
-
-This project is built on open-source foundations, and I want to be explicit
-about what is mine and what isn't.
-
-**Mine** — everything under `app/`, `pipeline/`, `scripts/`, `tests/`, and in
-`src/hovernet/`: the streaming inference engine, the sliding-window and
-coordinate system, band-streaming memory management, tissue detection, the
-checkpoint/architecture loader, overlay rendering, reporting, dashboard, CLI and
-test suite.
-
-**Vendored from [vqdang/hover_net](https://github.com/vqdang/hover_net)** (MIT) —
-the HoVer-Net network definition and building blocks, and the watershed
-post-processing that turns prediction maps into labelled nuclei. Modified only
-where modern NumPy/scikit-image/PyTorch APIs or robustness required it. One
-substantive fix: the upstream type-confidence calculation divides by every
-nucleus in the crop rather than the instance's own pixels, which caps reported
-confidence well below 1.0.
-
-The segmentation algorithm itself is the work of:
-
-> Simon Graham et al., *HoVer-Net: Simultaneous Segmentation and Classification
-> of Nuclei in Multi-Tissue Histology Images*, Medical Image Analysis, 2019.
 
 The pretrained checkpoints and pretrained encoder are from the same project.
 PanNuke-derived weights are CC BY-NC-SA 4.0, so **this project is configured for
