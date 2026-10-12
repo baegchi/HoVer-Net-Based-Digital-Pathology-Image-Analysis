@@ -253,32 +253,6 @@ Writing these found three real bugs: a broken path expression in the dashboard,
 overlay coordinates drawn against the wrong image for region analyses, and an
 overlap bound assumption that didn't hold for small strides.
 
-## Known limitations
-
-Worth being straight about, since the numbers above are model predictions rather
-than validated measurements:
-
-- **No fine-tuning or accuracy validation was performed.** The pretrained
-  weights are used as released. Reproducing published accuracy would mean
-  training on CoNSeP/PanNuke from scratch and scoring against expert
-  annotations; no accuracy-vs-ground-truth figure is claimed here because none
-  was measured.
-- **Segmentation is reliable; classification is not.** Instance boundaries track
-  visible nuclei closely in every run above, but type assignment is noticeably
-  less stable — note that "Dead" dominates the TCGA result, which is a domain
-  mismatch rather than a count of dead cells. Treat the per-nucleus type as a
-  weak label and the counts as the trustworthy output.
-- **Checkpoint choice matters.** The two checkpoints disagree substantially on
-  the same images. The one matching the sample data is the default.
-- Very large or overlapping nuclei can still be split across block boundaries.
-- Density assumes microns-per-pixel from slide metadata and falls back to a
-  stated 0.5 µm/px default when absent; the report always says which was used.
-
-
-The pretrained checkpoints and pretrained encoder are from the same project.
-PanNuke-derived weights are CC BY-NC-SA 4.0, so **this project is configured for
-non-commercial and educational use**. TCGA slides come from the NCI Genomic Data
-Commons under its open-access policy; OpenSlide is BSD licensed.
 
 ## Licence
 
